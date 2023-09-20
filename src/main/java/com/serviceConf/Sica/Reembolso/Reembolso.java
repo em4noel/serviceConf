@@ -59,16 +59,22 @@ public class Reembolso {
     private Boolean cancelado;
     @Column(name = "loc")
     private String loc;
+    @Column(name = "recnsica")
+    private int recnsica;
     @Column(name = "multclie")
     private Double multclie;
     @Column(name = "tarifbrl")
     private Double tarifbrl;
     @Column(name = "taxbrl")
     private Double taxbrl;
-    @Column(name = "trfadbrl")
+    @Column(name = "trfadic")
     private Double trfAdic;
+    @Column(name = "trfadbrl")
+    private Double trfadbrl;
     @Column(name = "valpaxcl")
     private Double valpaxcl;
+    @Column(name = "multforn")
+    private Double multforn;
     @Column(name = "tipodoc")
     private String tipodoc;
     @Column(name = "processado")
