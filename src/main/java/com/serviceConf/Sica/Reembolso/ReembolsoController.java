@@ -28,15 +28,9 @@ public class ReembolsoController {
     }
 
     @PostMapping("/FindBySica")
-    public List<ReembolsoDTO> findAll2(@RequestBody PostReembolsoSicaModel postReembolsoSicaModel) {
-        System.out.println(postReembolsoSicaModel.getDataI().getTime());
-        System.out.println(postReembolsoSicaModel.getDataI());
-        System.out.println(postReembolsoSicaModel.getDataF());
-      //  System.out.println(dataF);
-      //  System.out.println(codemp);
-       // System.out.println(tipoData);
+    public List<ReembolsoDTO> findAllSica(@RequestBody PostReembolsoSicaModel postReembolsoSicaModel) {
+       // System.out.println(postReembolsoSicaModel.getDataI().getTime());
        return reembolsoService.consultaSica(postReembolsoSicaModel);
-      // return null;
     }
 
 }

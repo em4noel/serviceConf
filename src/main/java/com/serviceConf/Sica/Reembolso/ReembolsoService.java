@@ -43,13 +43,6 @@ public class ReembolsoService {
     }
 
     public List<ReembolsoDTO> consultaSica(PostReembolsoSicaModel postReembolsoSicaModel){
-        System.out.println(postReembolsoSicaModel.getDataI());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-      //  Date dataInicial = formatter.(postReembolsoSicaModel.getDataI());
-      //  Date dataFinal = formatter.parse(dataF);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dataFormatadaI = dateFormat.format(postReembolsoSicaModel.getDataI());
-        String dataFormatadaF = dateFormat.format(postReembolsoSicaModel.getDataF());
 
         List<ReembolsoDTO> reembolsos = null;
         if(postReembolsoSicaModel.getTipoData().equalsIgnoreCase("dtR")) {
