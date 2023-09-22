@@ -36,16 +36,16 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
+
         if (authorization != null && authorization.startsWith("Bearer")) {
             String token = authorization.split(" ")[1];
             boolean isValid = this.jwtService.tokenValido(token);
             if (isValid) {
                 Authentication authentication = getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                filterChain.doFilter(request, response);
             }
-
         }
+        filterChain.doFilter(request, response);
     }
 
     public Authentication getAuthentication(String token) {

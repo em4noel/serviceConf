@@ -1,6 +1,7 @@
 package com.serviceConf.security.jwt;
 
 import com.serviceConf.Auth.Auth;
+import com.serviceConf.appConf.Usuario.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,13 @@ public class JwtService {
     @Value("${security.jwt.chave-assinatura}")
     private String chaveAssinatura;
 
-    public String gerarToken(Auth usuario) {
+    public String gerarToken(Usuario usuario) {
         Date now = new Date();
         Date expirationDate = new Date(now.getTime() + expiracao * 1000);
 
         return Jwts
                 .builder()
-                .setSubject(usuario.getLoginUsuario())
+                .setSubject(usuario.getLogin())
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, chaveAssinatura.getBytes())
                 .compact();
