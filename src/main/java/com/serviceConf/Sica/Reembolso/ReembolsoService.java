@@ -20,7 +20,7 @@ public class ReembolsoService {
 
     public Reembolso findAll(Reembolso filter) {
 
-        Reembolso reembolsoSica = reembolsoRepository.findByTipodocAndNumtktAndCodcia(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
+        Reembolso reembolsoSica = reembolsoRepository.findByTipodocAndNumtktAndCodciaAndDataped(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
         if (reembolsoSica != null && reembolsoSica.getNumvend() != null) {
             return reembolsoSica;
         }
@@ -28,7 +28,7 @@ public class ReembolsoService {
     }
 
     public Reembolso findByAzul(Reembolso filter) {
-        Reembolso reembolsoSica = reembolsoRepository.findByNumtktAndTipodoc(filter.getNumtkt(), filter.getTipodoc());
+        Reembolso reembolsoSica = reembolsoRepository.findByNumtktAndTipodocAndDataped(filter.getNumtkt(), filter.getTipodoc(), filter.getDataped());
         if (reembolsoSica != null && reembolsoSica.getNumvend() != null) {
             return reembolsoSica;
         }

@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface ReembolsoRepository extends JpaRepository<Reembolso, Integer> {
-    Reembolso findByTipodocAndNumtktAndCodcia(String tipodoc, String numTkt, String codCia);
+    Reembolso findByTipodocAndNumtktAndCodciaAndDataped(String tipodoc, String numTkt, String codCia, Date dataped);
 
-    Reembolso findByNumtktAndTipodoc(String tipodoc, String numTkt);
+    Reembolso findByNumtktAndTipodocAndDataped(String tipodoc, String numTkt, Date dataped);
 
     Reembolso findByLocAndTipodoc(String loc, String tipodoc);
 
