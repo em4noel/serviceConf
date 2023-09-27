@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reembolso")
@@ -25,7 +26,7 @@ public class ReembolsoController {
     @Autowired
     private JwtService jwtService;
     @PostMapping("/FindAll")
-    public Reembolso findAll(@RequestBody Reembolso reembolsoSica){
+    public Optional<Reembolso> findAll(@RequestBody Reembolso reembolsoSica){
         return reembolsoService.findAll(reembolsoSica);
     }
     @PostMapping("/FindByAzul")

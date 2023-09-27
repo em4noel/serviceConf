@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReembolsoRepository extends JpaRepository<Reembolso, Integer> {
-    Reembolso findByTipodocAndNumtktAndCodciaAndDataped(String tipodoc, String numTkt, String codCia, Date dataped);
+    Optional<Reembolso> findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(String tipodoc, String numTkt, String codCia, Date dataped);
+    Optional<Reembolso> findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(String tipodoc, String numTkt, String codCia);
 
     Reembolso findByNumtktAndTipodocAndDataped(String tipodoc, String numTkt, Date dataped);
 

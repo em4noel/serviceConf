@@ -12,16 +12,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReembolsoService {
     @Autowired
     private ReembolsoRepository reembolsoRepository;
 
-    public Reembolso findAll(Reembolso filter) {
+    public Optional<Reembolso> findAll(Reembolso filter) {
 
-        Reembolso reembolsoSica = reembolsoRepository.findByTipodocAndNumtktAndCodciaAndDataped(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
-        if (reembolsoSica != null && reembolsoSica.getNumvend() != null) {
+        //Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
+        Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
+        if (reembolsoSica.isPresent()) {
             return reembolsoSica;
         }
         return null;
