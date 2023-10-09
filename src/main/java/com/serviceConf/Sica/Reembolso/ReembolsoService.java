@@ -20,7 +20,6 @@ public class ReembolsoService {
     private ReembolsoRepository reembolsoRepository;
 
     public Optional<Reembolso> findAll(Reembolso filter) {
-
         //Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
         Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
         if (reembolsoSica.isPresent()) {
