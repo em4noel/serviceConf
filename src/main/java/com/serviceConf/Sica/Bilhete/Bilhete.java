@@ -14,5 +14,6 @@ public class Bilhete {
     private Integer numvend;
     @Column(name = "loc")
     private String loc;
-
+    @Column(name = "numtkt")
+    private String numtkt;
 }

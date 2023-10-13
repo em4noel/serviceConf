@@ -14,14 +14,18 @@ public class VendaService {
     @Autowired
     private VendaRepository vendaRepository;
 
-    public Optional<Venda> findByVenda(String loc){
-        Optional<Bilhete> bilhete =bilheteService.findByloc(loc);
-        if(bilhete.isPresent()){
-            Optional<Venda> venda = vendaRepository.findByNumvend(bilhete.get().getNumvend());
-            if(venda.isPresent()){
-                return venda;
+    public Optional<Venda> findByVenda(String loc) {
+        Optional<Bilhete> bilhete = bilheteService.findByloc(loc);
+        if (bilhete != null) {
+            if (bilhete.isPresent()) {
+                Optional<Venda> venda = vendaRepository.findByNumvend(bilhete.get().getNumvend());
+                if (venda.isPresent()) {
+                    return venda;
+                }
             }
         }
         return null;
     }
+
+
 }
