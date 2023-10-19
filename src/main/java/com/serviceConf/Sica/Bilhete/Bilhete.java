@@ -16,4 +16,10 @@ public class Bilhete {
     private String loc;
     @Column(name = "numtkt")
     private String numtkt;
+    @Column(name = "codest")
+    private String codest;
+    @Column(name = "pax")
+    private String pax;
+    @Column(name = "iata")
+    private Integer iata;
 }

@@ -1,5 +1,7 @@
 package com.serviceConf.Sica.Bilhete;
 
+import com.serviceConf.Sica.Bilhete.dto.BilheteLocDto;
+import com.serviceConf.Sica.Bilhete.dto.BilheteNumtktDto;
 import com.serviceConf.Sica.Bilhete.dto.FindByBilheteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +25,11 @@ public class BilheteService {
 
     public List<FindByBilheteDto> findByBilhete(String numTkt){
         return bilheteRepository.findByBilhete(numTkt);
+    }
+    public List<BilheteNumtktDto> findByBilheteNumtkt(String numTkt){
+        return bilheteRepository.findByBilheteNumTkt(numTkt);
+    }
+    public List<BilheteLocDto> findByBilheteLoc(String loc){
+        return bilheteRepository.findByBilheteLoc(loc);
     }
 }
