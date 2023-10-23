@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -50,4 +51,22 @@ public class TurVendasAereas {
     private Date emitidoEm;
     @Column(name = "Reemissao")
     private Integer reemissao;
+    @Column(name = "Origem")
+    private String origem;
+    @Column(name = "Destino")
+    private String destino;
+    @Column(name = "Tarifa")
+    private BigDecimal tarifa;
+    @Column(name = "Taxa")
+    private BigDecimal taxa;
+    @Column(name = "ccRequisicao")
+    private String ccRequisicao;
+    @Column(name = "TipoDePassageiro")
+    private String tipoDePassageiro;
+    @Column(name = "TaxaRepasseDeTerceiros")
+    private BigDecimal taxaRepasseDeTerceiros;
+    @Column(name = "PassageiroSexo")
+    private String passageiroSexo;
+    @Column(name = "Requisicao")
+    private String requisicao;
 }
