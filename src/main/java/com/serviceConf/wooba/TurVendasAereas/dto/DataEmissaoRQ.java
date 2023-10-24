@@ -6,6 +6,6 @@ import java.util.Date;
 
 @Data
 public class DataEmissaoRQ {
-    private Date dataInicial;
-    private Date dataFinal;
+    private String dataInicial;
+    private String dataFinal;
 }
