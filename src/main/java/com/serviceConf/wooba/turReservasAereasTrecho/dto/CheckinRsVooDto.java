@@ -5,12 +5,14 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @Data
 public class CheckinRsVooDto {
     private String id;
     private String trecho;
     private String nomeAgencia;
     private String nomeUnidade;
+    private String numeroDoBilhete;
     private String numeroBilheteOriginal;
     private String tktBilhete;
     private String logomarca;
@@ -25,10 +27,11 @@ public class CheckinRsVooDto {
     private List<TrechoVooDto> trechosVolta;
     private List<TrechoVooDto> trechosMultiplaConexao;
 
-    public CheckinRsVooDto(String id, String numeroBilhete,String tktBilhete, String localizadorCompanhia, Date data, String companhia, String nomeAgencia, String nomeUnidade,  String logomarca, String nomeCompleto, String email, String passageiro, String trecho, Integer reemissao) {
+    public CheckinRsVooDto(String id, String numeroDoBilhete, String numeroBilheteOriginal, String tktBilhete, String localizadorCompanhia, Date data, String companhia, String nomeAgencia, String nomeUnidade, String logomarca, String nomeCompleto, String email, String passageiro, String trecho, Integer reemissao) {
         this.id = id;
-        this.numeroBilheteOriginal = numeroBilhete;
-        this.tktBilhete= tktBilhete;
+        this.numeroDoBilhete = numeroDoBilhete;
+        this.numeroBilheteOriginal = numeroBilheteOriginal;
+        this.tktBilhete = tktBilhete;
         this.localizadorCompanhia = localizadorCompanhia;
         this.data = data;
         this.companhia = companhia;

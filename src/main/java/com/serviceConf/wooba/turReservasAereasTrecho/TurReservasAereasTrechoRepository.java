@@ -13,8 +13,8 @@ public interface TurReservasAereasTrechoRepository extends JpaRepository<TurRese
 
     @Transactional(readOnly = true)
     @Query(value = " SELECT NEW com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinVooDto " +
-            "( tre.id, v.trecho, ag.nomeAgencia, u.nomeUnidade, ag.logomarca, us.nomeCompleto, us.email, rs.reservaId, " +
-            " v.numeroBilheteOriginal, v.tktBilhete, v.localizador, " +
+            "( tre.id, v.trecho, ag.nomeAgencia, u.nomeUnidade, ag.logomarca, us.nomeCompleto, us.email, rs.reservaId, v.numeroDaCompanhia, " +
+            " v.numeroDoBilhete, v.numeroBilheteOriginal, v.tktBilhete, v.localizador, " +
             " tre.localizadorCompanhia, tre.segmento, tre.conexao, tre.de, tre.dsOrigem, tre.para, tre.dsDestino, tre.companhia, tre.duracaoVoo, " +
             " tre.data, v.dataDaInclusao, v.dataDeAlteracao, tre.hora, tre.voo, tre.horaRetorno, v.status, v.passageiro, v.reemissao, v.reemissaoTipo ) " +
             " FROM TurReservasAereasTrecho tre, TurVendasAereas v, TurReservasAereas rs, TurAgencias ag, TurUnidadesOperacionais u, TurUsuarios us " +
@@ -25,9 +25,9 @@ public interface TurReservasAereasTrechoRepository extends JpaRepository<TurRese
             " AND v.unidade = u.id " +
             " AND v.localizador = rs.localizador " +
             " AND v.status = 1 " +
-            " AND v.dataDeEmbarque = '2023-11-12' " +
-            " AND tre.data BETWEEN '2023-11-12' AND '2023-11-15'" +
-            " AND v.localizador='4JN6F8' " +
+            " AND v.dataDeEmbarque = '2023-11-16' " +
+            " AND tre.data BETWEEN '2023-11-16' AND '2023-11-19'" +
+            " AND v.localizador='35SO2U' " +
             " ORDER BY tre.id ASC")
     List<CheckinVooDto> findByCheckin();
 }

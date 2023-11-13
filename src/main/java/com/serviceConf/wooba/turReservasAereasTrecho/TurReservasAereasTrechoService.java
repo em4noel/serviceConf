@@ -50,7 +50,8 @@ public class TurReservasAereasTrechoService {
 
     private CheckinRsVooDto createCheckinResponseDto(CheckinVooDto checkinVooDto) {
         String reserva = checkinVooDto.getReservaId().toString();
-        String numeroDoBilhete = checkinVooDto.getNumeroBilheteOriginal();
+        String numeroDoBilhete = checkinVooDto.getNumeroDaCompanhia() + checkinVooDto.getNumeroBoBilhete();
+        String numeroDoBilheteOriginal = checkinVooDto.getNumeroBilheteOriginal();
         String tktBilhete = checkinVooDto.getTktBilhete();
         String localizadorCompanhia = checkinVooDto.getLocalizadorCompanhia();
         Date data = checkinVooDto.getData();
@@ -63,7 +64,7 @@ public class TurReservasAereasTrechoService {
         String tipoTrecho = (checkinVooDto.getTrecho() == 1) ? "Domestico" : "Internacional";
 
         CheckinRsVooDto checkinResponseDto = new CheckinRsVooDto(
-                reserva, numeroDoBilhete, tktBilhete, localizadorCompanhia, data, companhiaInicio, nomeAgencia,
+                reserva, numeroDoBilhete, numeroDoBilheteOriginal, tktBilhete, localizadorCompanhia, data, companhiaInicio, nomeAgencia,
                 nomeUnidade, logomarca, nomeCompleto, email, checkinVooDto.getPassageiro(), tipoTrecho, checkinVooDto.getReemissao()
         );
 
