@@ -1,11 +1,10 @@
-package com.serviceConf.wooba.TurVendasAereas;
+package com.serviceConf.wooba.turVendasAereas;
 
-import com.serviceConf.wooba.TurVendasAereas.dto.DataEmissaoRQ;
-import com.serviceConf.wooba.TurVendasAereas.dto.FindVendaByDataEmissaoDto;
-import com.serviceConf.wooba.TurVendasAereas.dto.IdReserva;
-import com.serviceConf.wooba.TurVendasAereas.dto.PassageirosTurVendasAereasDto;
+import com.serviceConf.wooba.turVendasAereas.dto.DataEmissaoRQ;
+import com.serviceConf.wooba.turVendasAereas.dto.FindVendaByDataEmissaoDto;
+import com.serviceConf.wooba.turVendasAereas.dto.IdReserva;
+import com.serviceConf.wooba.turVendasAereas.dto.PassageirosTurVendasAereasDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/vendasAereas")

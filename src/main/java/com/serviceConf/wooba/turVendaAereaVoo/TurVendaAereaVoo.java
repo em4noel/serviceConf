@@ -1,6 +1,6 @@
-package com.serviceConf.wooba.TurVendaAereaVoo;
+package com.serviceConf.wooba.turVendaAereaVoo;
 
-import com.serviceConf.wooba.TurVendasAereas.TurVendasAereas;
+import com.serviceConf.wooba.turVendasAereas.TurVendasAereas;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

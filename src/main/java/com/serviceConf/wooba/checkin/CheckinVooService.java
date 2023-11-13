@@ -1,12 +1,13 @@
-package com.serviceConf.wooba.Checkin.dto;
+package com.serviceConf.wooba.checkin;
 
+import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinRsVooDto;
+import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinVooDto;
+import com.serviceConf.wooba.turReservasAereasTrecho.dto.TrechoVooDto;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class CheckinVooService {
-    public List<CheckinRsVooDto> transformToResponseDto(List<CheckinVooDto> checkinDtos) {
+    /*public List<CheckinRsVooDto> transformToResponseDto(List<CheckinVooDto> checkinDtos) {
         Map<String, CheckinRsVooDto> checkinMap = new HashMap<>();
 
         for (CheckinVooDto checkinDto : checkinDtos) {
@@ -44,7 +45,7 @@ public class CheckinVooService {
             }
         }
         return new ArrayList<>(checkinMap.values());
-    }
+    }*/
 
     private TrechoVooDto createTrechoDto(CheckinVooDto checkinDto) {
         TrechoVooDto trecho =null;
@@ -53,7 +54,7 @@ public class CheckinVooService {
     }
 
     private CheckinRsVooDto createCheckinResponseDto(CheckinVooDto checkinDto) {
-        String reserva = checkinDto.getVooId().toString();
+      /*  String reserva = checkinDto.getVooId().toString();
         String numeroDoBilhete = checkinDto.getNumeroDoBilhete();
         String localizadorCompanhia = checkinDto.getLocalizadorCompanhia();
         Date data = checkinDto.getPartida();
@@ -67,7 +68,8 @@ public class CheckinVooService {
 
         CheckinRsVooDto checkinResponseDto = null;
 
-        return checkinResponseDto;
+        return checkinResponseDto;*/
+        return null;
     }
 
     private boolean areTrechosEqual(TrechoVooDto trecho1, TrechoVooDto trecho2) {

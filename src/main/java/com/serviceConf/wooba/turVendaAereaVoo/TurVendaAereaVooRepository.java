@@ -1,13 +1,7 @@
-package com.serviceConf.wooba.TurVendaAereaVoo;
+package com.serviceConf.wooba.turVendaAereaVoo;
 
-import com.serviceConf.wooba.Checkin.dto.CheckinVooDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Repository
 public interface TurVendaAereaVooRepository extends JpaRepository<TurVendaAereaVoo, Integer> {

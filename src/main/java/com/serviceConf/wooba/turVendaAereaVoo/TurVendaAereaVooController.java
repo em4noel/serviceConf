@@ -1,4 +1,4 @@
-package com.serviceConf.wooba.TurVendaAereaVoo;
+package com.serviceConf.wooba.turVendaAereaVoo;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

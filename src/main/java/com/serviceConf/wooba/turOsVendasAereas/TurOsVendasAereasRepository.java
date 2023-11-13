@@ -15,7 +15,7 @@ public interface TurOsVendasAereasRepository extends JpaRepository<TurOsVendasAe
     @Query("SELECT NEW  com.serviceConf.wooba.turOsVendasAereas.dto.FindOsDto " +
             " (os.numero, os.dataAbertura, os.dataViagem, os.passageiro, os.descricao, os.solicitanteNome, " +
             " os.solicitanteEmail, os.campoExtra1Descricao,  os.campoExtra2Valor, os.campoExtra3Descricao,  " +
-            " os.campoExtra4Descricao, os.id) " +
+            " os.campoExtra4Descricao, os.campoExtra5Valor, os.id) " +
             " FROM TurOsVendasAereas osv, TurOS os " +
             " WHERE osv.turOsId=os.id " +
             " and osv.turOsVendasAereasId=:idReserva")

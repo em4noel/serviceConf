@@ -1,8 +1,8 @@
-package com.serviceConf.wooba.TurVendasAereas;
+package com.serviceConf.wooba.turVendasAereas;
 
-import com.serviceConf.wooba.TurAgencias.TurAgencias;
-import com.serviceConf.wooba.TurUnidadesOperacionais.TurUnidadesOperacionais;
-import com.serviceConf.wooba.TurUsuarios.TurUsuarios;
+import com.serviceConf.wooba.turAgencias.TurAgencias;
+import com.serviceConf.wooba.turUnidadesOperacionais.TurUnidadesOperacionais;
+import com.serviceConf.wooba.turUsuarios.TurUsuarios;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,10 @@ public class TurVendasAereas {
     private String numeroDaCompanhia;
     @Column(name = "NumeroDoBilhete")
     private String numeroDoBilhete;
+    @Column(name = "NumeroBilheteOriginal")
+    private String numeroBilheteOriginal;
+    @Column(name = "TktBilhete")
+    private String tktBilhete;
     @Column(name = "Localizador")
     private String localizador;
     @ManyToOne
@@ -41,6 +45,10 @@ public class TurVendasAereas {
     private Integer status;
     @Column(name = "DataDeEmbarque")
     private Date dataDeEmbarque;
+    @Column(name = "DataDaInclusao")
+    private Date dataDaInclusao;
+    @Column(name = "DataDeAlteracao")
+    private Date dataDeAlteracao;
     @Column(name = "Passageiro")
     private String passageiro;
     @Column(name = "Companhia")
@@ -51,6 +59,8 @@ public class TurVendasAereas {
     private Date emitidoEm;
     @Column(name = "Reemissao")
     private Integer reemissao;
+    @Column(name = "ReemissaoTipo")
+    private Integer reemissaoTipo;
     @Column(name = "Origem")
     private String origem;
     @Column(name = "Destino")

@@ -1,4 +1,4 @@
-package com.serviceConf.wooba.TurUnidadesOperacionais;
+package com.serviceConf.wooba.turUnidadesOperacionais;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

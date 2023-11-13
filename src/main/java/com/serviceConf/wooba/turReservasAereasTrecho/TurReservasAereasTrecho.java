@@ -32,5 +32,23 @@ public class TurReservasAereasTrecho {
     @Column(name = "Familia")
     private String familia;
     @Column(name = "Reserva")
-    private Integer reservaId;
+    private Integer reserva;
+    @Column(name = "LocalizadorCompanhia")
+    private String localizadorCompanhia;
+    @Column(name = "Segmento")
+    private String segmento;
+    @Column(name = "Conexao")
+    private Integer conexao;
+    @Column(name = "De")
+    private String de;
+    @Column(name = "Para")
+    private String para;
+    @Column(name = "DuracaoVoo")
+    private String duracaoVoo;
+    @Column(name = "Hora")
+    private String hora;
+    @Column(name = "Voo")
+    private String voo;
+    @Column(name = "HoraRetorno")
+    private String horaRetorno;
 }

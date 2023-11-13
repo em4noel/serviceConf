@@ -1,10 +1,8 @@
 package com.serviceConf.security.jwt;
 
-import com.serviceConf.Auth.Auth;
 import com.serviceConf.appConf.Usuario.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -19,6 +17,8 @@ public class JwtService {
     private long expiracao;
     @Value("${security.jwt.chave-assinatura}")
     private String chaveAssinatura;
+
+
 
     public String gerarToken(Usuario usuario) {
         Date now = new Date();

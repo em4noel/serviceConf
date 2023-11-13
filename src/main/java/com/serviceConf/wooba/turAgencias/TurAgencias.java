@@ -1,6 +1,6 @@
-package com.serviceConf.wooba.TurAgencias;
+package com.serviceConf.wooba.turAgencias;
 
-import com.serviceConf.wooba.TurUnidadesOperacionais.TurUnidadesOperacionais;
+import com.serviceConf.wooba.turUnidadesOperacionais.TurUnidadesOperacionais;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class TurAgencias {
     @Column(name = "Id")
     private Integer id;
     @Column(name = "Nome")
-    private String nome;
+    private String nomeAgencia;
     @Column(name = "Logomarca")
     private String logomarca;
     @ManyToOne

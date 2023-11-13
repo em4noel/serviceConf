@@ -41,5 +41,7 @@ public class TurOS {
     private String campoExtra3Descricao;
     @Column(name = "CampoExtra4Descricao")
     private String campoExtra4Descricao;
+    @Column(name = "CampoExtra5Valor")
+    private String campoExtra5Valor;
 
 }

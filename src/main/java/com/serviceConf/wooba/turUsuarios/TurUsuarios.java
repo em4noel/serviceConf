@@ -1,6 +1,6 @@
-package com.serviceConf.wooba.TurUsuarios;
+package com.serviceConf.wooba.turUsuarios;
 
-import com.serviceConf.wooba.TurAgencias.TurAgencias;
+import com.serviceConf.wooba.turAgencias.TurAgencias;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

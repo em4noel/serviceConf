@@ -1,7 +1,7 @@
-package com.serviceConf.wooba.TurVendasAereas;
+package com.serviceConf.wooba.turVendasAereas;
 
-import com.serviceConf.wooba.TurVendasAereas.dto.FindVendaByDataEmissaoDto;
-import com.serviceConf.wooba.TurVendasAereas.dto.PassageirosTurVendasAereasDto;
+import com.serviceConf.wooba.turVendasAereas.dto.FindVendaByDataEmissaoDto;
+import com.serviceConf.wooba.turVendasAereas.dto.PassageirosTurVendasAereasDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface TurVendasAereasRepository extends JpaRepository<TurVendasAereas, Integer> {
     @Transactional
-    @Query(" SELECT NEW com.serviceConf.wooba.TurVendasAereas.dto.FindVendaByDataEmissaoDto " +
+    @Query(" SELECT NEW com.serviceConf.wooba.turVendasAereas.dto.FindVendaByDataEmissaoDto " +
             " (v.id, v.localizador, v.origem, v.destino, v.tarifa, " +
             " v.taxa, v.ccRequisicao, v.emitidoEm, v.dataDeEmbarque, v.companhia) " +
             " FROM TurVendasAereas v " +
@@ -21,7 +21,7 @@ public interface TurVendasAereasRepository extends JpaRepository<TurVendasAereas
      List<FindVendaByDataEmissaoDto> fingByDataEmissao(@PathVariable Date dataInicial, @PathVariable Date dataFinal);
 
     @Transactional
-    @Query(" SELECT NEW com.serviceConf.wooba.TurVendasAereas.dto.PassageirosTurVendasAereasDto " +
+    @Query(" SELECT NEW com.serviceConf.wooba.turVendasAereas.dto.PassageirosTurVendasAereasDto " +
             " (passageiro, tipoDePassageiro, numeroDoBilhete, tarifa, taxa, taxaRepasseDeTerceiros, passageiroSexo, requisicao  )" +
             " FROM TurVendasAereas " +
             " WHERE id=:id")

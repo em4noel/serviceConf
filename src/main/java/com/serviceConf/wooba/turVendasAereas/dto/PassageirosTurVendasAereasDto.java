@@ -1,4 +1,4 @@
-package com.serviceConf.wooba.TurVendasAereas.dto;
+package com.serviceConf.wooba.turVendasAereas.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

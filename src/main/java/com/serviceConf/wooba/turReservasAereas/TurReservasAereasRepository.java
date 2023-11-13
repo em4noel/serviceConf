@@ -13,11 +13,10 @@ import java.util.List;
 public interface TurReservasAereasRepository extends JpaRepository<TurReservasAereas, Integer> {
     @Transactional
     @Query(" SELECT NEW com.serviceConf.wooba.turReservasAereas.dto.TrechoVendaDto " +
-            " (t.companhia, t.data, t.dataRetorno, t.dsDestino, t.dsOrigem, t.familia, " +
-            " r.trecho) " +
+            " (r.trecho,t.companhia, t.data, t.dataRetorno, t.dsDestino, t.dsOrigem, t.familia ) " +
             " FROM TurReservasAereas r, TurReservasAereasTrecho t " +
-            " WHERE r.localizador= :localizador " +
-            " AND t.reservaId=r.id " +
+            " WHERE  t.reserva=r.reservaId   " +
+            " AND r.localizador= :localizador " +
             " AND r.companhia= :cia " +
             " AND r.cliente=227 ")
     List<TrechoVendaDto> findByTrechoVenda(@PathVariable String localizador, @PathVariable String cia);
