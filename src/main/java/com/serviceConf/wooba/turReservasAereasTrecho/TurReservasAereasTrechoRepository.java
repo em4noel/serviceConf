@@ -25,9 +25,8 @@ public interface TurReservasAereasTrechoRepository extends JpaRepository<TurRese
             " AND v.unidade = u.id " +
             " AND v.localizador = rs.localizador " +
             " AND v.status = 1 " +
-            " AND v.dataDeEmbarque = '2023-11-16' " +
-            " AND tre.data BETWEEN '2023-11-16' AND '2023-11-19'" +
-            " AND v.localizador='35SO2U' " +
-            " ORDER BY tre.id ASC")
+            " AND v.dataDeEmbarque = '2023-11-19' " +
+            " AND tre.data BETWEEN '2023-11-19' AND '2023-11-22' " +
+            " ORDER BY tre.id ASC ")
     List<CheckinVooDto> findByCheckin();
 }

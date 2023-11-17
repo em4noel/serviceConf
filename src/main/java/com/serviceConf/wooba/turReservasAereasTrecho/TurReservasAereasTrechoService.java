@@ -4,9 +4,7 @@ import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinRsVooDto;
 import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinVooDto;
 import com.serviceConf.wooba.turReservasAereasTrecho.dto.TrechoVooDto;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
-
 @Service
 public class TurReservasAereasTrechoService {
     public List<CheckinRsVooDto> transformToResponseDto(List<CheckinVooDto> checkinVooDtos) {
@@ -14,38 +12,52 @@ public class TurReservasAereasTrechoService {
         for (CheckinVooDto checkinDto : checkinVooDtos) {
             String nomePax = checkinDto.getPassageiro();
             int reemissao = checkinDto.getReemissao();
-            // Verifique se já existe uma entrada no mapa para esse nomePax
+            String numeroDoBilhete = checkinDto.getNumeroDaCompanhia() + checkinDto.getNumeroBoBilhete();
+            // Verifique se já existe uma entrada no mapa para esse nomePax.
             if (checkinMap.containsKey(nomePax)) {
                 CheckinRsVooDto existingResponseDto = checkinMap.get(nomePax);
-                // Verifique se a reemissão atual é maior que a reemissão existente
-                if (reemissao > existingResponseDto.getReemissao()) {
-                    // Substitua o registro existente pelo novo com a maior reemissão
+                // Verifique se a reemissão atual é maior que a reemissão existente.
+                if (!numeroDoBilhete.equals(existingResponseDto.getNumeroDoBilhete()) && reemissao > existingResponseDto.getReemissao()) {
+                    // Substitua o registro existente pelo novo com a maior reemissão.
                     CheckinRsVooDto newResponseDto = createCheckinResponseDto(checkinDto);
-                    newResponseDto.getTrechosMultiplaConexao().add(createTrechoDto(checkinDto));
+                    TrechoVooDto novoTrecho = createTrechoDto(checkinDto);
+                    if (!hasTrecho(existingResponseDto.getTrechosMultiplaConexao(), novoTrecho)) {
+                        newResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
+                    }
                     checkinMap.put(nomePax, newResponseDto);
                 } else if (reemissao == existingResponseDto.getReemissao()) {
-                    // Se a reemissão for igual, verifique se o trecho já existe no registro existente
+                    // Se a reemissão for igual, verifique se o trecho já existe no registro existente.
                     boolean trechoExists = false;
-
+                    TrechoVooDto novoTrecho = createTrechoDto(checkinDto);
                     for (TrechoVooDto trecho : existingResponseDto.getTrechosMultiplaConexao()) {
-                        if (areTrechosEqual(trecho, createTrechoDto(checkinDto))) {
+                        if (areTrechosEqual(trecho, novoTrecho)) {
                             trechoExists = true;
                             break;
                         }
                     }
-                    // Se o trecho não existir, adicione-o ao registro existente
+                    // Se o trecho não existir, adicione-o ao registro existente.
                     if (!trechoExists) {
-                        existingResponseDto.getTrechosMultiplaConexao().add(createTrechoDto(checkinDto));
+                        existingResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
                     }
                 }
             } else {
-                // Se não existir, crie uma nova entrada no mapa
+                // Se não existir, crie uma nova entrada no mapa.
                 CheckinRsVooDto newCheckinResponseDto = createCheckinResponseDto(checkinDto);
-                newCheckinResponseDto.getTrechosMultiplaConexao().add(createTrechoDto(checkinDto));
+                TrechoVooDto novoTrecho = createTrechoDto(checkinDto);
+                newCheckinResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
                 checkinMap.put(nomePax, newCheckinResponseDto);
             }
         }
         return new ArrayList<>(checkinMap.values());
+    }
+
+    private boolean hasTrecho(List<TrechoVooDto> trechos, TrechoVooDto trecho) {
+        for (TrechoVooDto existingTrecho : trechos) {
+            if (areTrechosEqual(existingTrecho, trecho)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private CheckinRsVooDto createCheckinResponseDto(CheckinVooDto checkinVooDto) {
