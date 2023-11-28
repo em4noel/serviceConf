@@ -4,7 +4,9 @@ import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinRsVooDto;
 import com.serviceConf.wooba.turReservasAereasTrecho.dto.CheckinVooDto;
 import com.serviceConf.wooba.turReservasAereasTrecho.dto.TrechoVooDto;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
+
 @Service
 public class TurReservasAereasTrechoService {
     public List<CheckinRsVooDto> transformToResponseDto(List<CheckinVooDto> checkinVooDtos) {
@@ -12,8 +14,9 @@ public class TurReservasAereasTrechoService {
         for (CheckinVooDto checkinDto : checkinVooDtos) {
             String nomePax = checkinDto.getPassageiro();
             int reemissao = checkinDto.getReemissao();
-            String numeroDoBilhete = checkinDto.getNumeroDaCompanhia() + checkinDto.getNumeroBoBilhete();
+            String numeroDoBilhete = checkinDto.getNumeroDaCompanhia() + checkinDto.getNumeroDoBilhete();
             // Verifique se já existe uma entrada no mapa para esse nomePax.
+
             if (checkinMap.containsKey(nomePax)) {
                 CheckinRsVooDto existingResponseDto = checkinMap.get(nomePax);
                 // Verifique se a reemissão atual é maior que a reemissão existente.
@@ -26,18 +29,32 @@ public class TurReservasAereasTrechoService {
                     }
                     checkinMap.put(nomePax, newResponseDto);
                 } else if (reemissao == existingResponseDto.getReemissao()) {
-                    // Se a reemissão for igual, verifique se o trecho já existe no registro existente.
                     boolean trechoExists = false;
                     TrechoVooDto novoTrecho = createTrechoDto(checkinDto);
-                    for (TrechoVooDto trecho : existingResponseDto.getTrechosMultiplaConexao()) {
-                        if (areTrechosEqual(trecho, novoTrecho)) {
-                            trechoExists = true;
-                            break;
+                    boolean bilheteExiste = false;
+                    // Verifique se o número do bilhete original é diferente
+                    if (!numeroDoBilhete.trim().equals(existingResponseDto.getNumeroBilheteOriginal())) {
+                        // Verifique se o trecho já existe no registro existente
+                        for (TrechoVooDto trecho : existingResponseDto.getTrechosMultiplaConexao()) {
+                            if (areTrechosEqual(trecho, novoTrecho)) {
+                                trechoExists = true;
+                                break;
+                            }
+                            if (numeroDoBilhete.trim().equals(existingResponseDto.getNumeroDoBilhete()) || numeroDoBilhete.equals(existingResponseDto.getNumeroBilheteOriginal())) {
+                                bilheteExiste = true;
+                                break;
+                            }
                         }
-                    }
-                    // Se o trecho não existir, adicione-o ao registro existente.
-                    if (!trechoExists) {
-                        existingResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
+                        if (!bilheteExiste) {
+                            CheckinRsVooDto newCheckinResponseDto = createCheckinResponseDto(checkinDto);
+                            TrechoVooDto novoTrecho2 = createTrechoDto(checkinDto);
+                            newCheckinResponseDto.getTrechosMultiplaConexao().add(novoTrecho2);
+                            checkinMap.put(nomePax, newCheckinResponseDto);
+                        }
+                        // Se o trecho não existir, adicione-o ao registro existente
+                        if (!trechoExists) {
+                            existingResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
+                        }
                     }
                 }
             } else {
@@ -46,6 +63,7 @@ public class TurReservasAereasTrechoService {
                 TrechoVooDto novoTrecho = createTrechoDto(checkinDto);
                 newCheckinResponseDto.getTrechosMultiplaConexao().add(novoTrecho);
                 checkinMap.put(nomePax, newCheckinResponseDto);
+
             }
         }
         return new ArrayList<>(checkinMap.values());
@@ -62,10 +80,11 @@ public class TurReservasAereasTrechoService {
 
     private CheckinRsVooDto createCheckinResponseDto(CheckinVooDto checkinVooDto) {
         String reserva = checkinVooDto.getReservaId().toString();
-        String numeroDoBilhete = checkinVooDto.getNumeroDaCompanhia() + checkinVooDto.getNumeroBoBilhete();
+        String numeroDoBilhete = checkinVooDto.getNumeroDaCompanhia() + checkinVooDto.getNumeroDoBilhete();
         String numeroDoBilheteOriginal = checkinVooDto.getNumeroBilheteOriginal();
         String tktBilhete = checkinVooDto.getTktBilhete();
         String localizadorCompanhia = checkinVooDto.getLocalizadorCompanhia();
+        String localizador = checkinVooDto.getLocalizador();
         Date data = checkinVooDto.getData();
         String companhiaInicio = checkinVooDto.getCompanhia();
         String nomeAgencia = checkinVooDto.getNomeAgencia();
@@ -74,6 +93,13 @@ public class TurReservasAereasTrechoService {
         String nomeCompleto = checkinVooDto.getNomeCompleto();
         String email = checkinVooDto.getEmail();
         String tipoTrecho = (checkinVooDto.getTrecho() == 1) ? "Domestico" : "Internacional";
+
+        if (tipoTrecho.equalsIgnoreCase("Domestico")) {
+            localizadorCompanhia = localizador;
+        } else if (tipoTrecho.equalsIgnoreCase("Internacional") && checkinVooDto.getLocalizadorCompanhia() != null) {
+            localizadorCompanhia = checkinVooDto.getLocalizadorCompanhia();
+        }
+
 
         CheckinRsVooDto checkinResponseDto = new CheckinRsVooDto(
                 reserva, numeroDoBilhete, numeroDoBilheteOriginal, tktBilhete, localizadorCompanhia, data, companhiaInicio, nomeAgencia,

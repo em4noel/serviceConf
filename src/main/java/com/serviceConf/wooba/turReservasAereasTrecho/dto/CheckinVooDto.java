@@ -15,7 +15,7 @@ public class CheckinVooDto {
     private  String email;
     private Integer reservaId;
     private String numeroDaCompanhia;
-    private String numeroBoBilhete;
+    private String numeroDoBilhete;
     private String numeroBilheteOriginal;
     private String tktBilhete;
     private String localizador;
@@ -39,7 +39,7 @@ public class CheckinVooDto {
     private Integer reemissao;
     private  Integer reemissaoTipo;
 
-    public CheckinVooDto(Integer id, Integer trecho, String nomeAgencia, String nomeUnidade, String logomarca, String nomeCompleto, String email, Integer reservaId, String numeroDaCompanhia, String numeroBoBilhete, String numeroBilheteOriginal, String tktBilhete, String localizador, String localizadorCompanhia, String segmento, Integer conexao, String de, String dsOrigem, String para, String dsDestino, String companhia, String duracaoVoo, Date data, Date dataDaInclusao, Date dataDeAlteracao, String hora, String voo, String horaRetorno, Integer status, String passageiro, Integer reemissao, Integer reemissaoTipo) {
+    public CheckinVooDto(Integer id, Integer trecho, String nomeAgencia, String nomeUnidade, String logomarca, String nomeCompleto, String email, Integer reservaId, String numeroDaCompanhia, String numeroDoBilhete, String numeroBilheteOriginal, String tktBilhete, String localizador, String localizadorCompanhia, String segmento, Integer conexao, String de, String dsOrigem, String para, String dsDestino, String companhia, String duracaoVoo, Date data, Date dataDaInclusao, Date dataDeAlteracao, String hora, String voo, String horaRetorno, Integer status, String passageiro, Integer reemissao, Integer reemissaoTipo) {
         this.id = id;
         this.trecho = trecho;
         this.nomeAgencia = nomeAgencia;
@@ -49,7 +49,7 @@ public class CheckinVooDto {
         this.email = email;
         this.reservaId = reservaId;
         this.numeroDaCompanhia = numeroDaCompanhia;
-        this.numeroBoBilhete = numeroBoBilhete;
+        this.numeroDoBilhete = numeroDoBilhete;
         this.numeroBilheteOriginal = numeroBilheteOriginal;
         this.tktBilhete = tktBilhete;
         this.localizador = localizador;

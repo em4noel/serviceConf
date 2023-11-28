@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -23,10 +24,16 @@ public interface TurReservasAereasTrechoRepository extends JpaRepository<TurRese
             " AND v.agencia = ag.id " +
             " AND rs.usuario = us.id " +
             " AND v.unidade = u.id " +
+            " AND u.nomeUnidade <> 'CWB' " +
+            " AND u.nomeUnidade <> 'CWB - GR'" +
             " AND v.localizador = rs.localizador " +
             " AND v.status = 1 " +
-            " AND v.dataDeEmbarque = '2023-11-19' " +
-            " AND tre.data BETWEEN '2023-11-19' AND '2023-11-22' " +
+            " AND rs.status <> 3 " +
+            " AND ag.nomeAgencia <> 'ART VIAGENS' " +
+            " AND ag.nomeAgencia <> 'MAXMILHAS' " +
+            //" AND tre.localizadorCompanhia IN ('4PB65Q', 'MGJAYR','OIVNOM','EARALQ')" +
+            " AND v.dataDeEmbarque BETWEEN :dataInicial and :dataFinal  " +
+            //" AND tre.data BETWEEN '2023-11-26 00:00:00' AND '2023-11-29 23:59:59' " +
             " ORDER BY tre.id ASC ")
-    List<CheckinVooDto> findByCheckin();
+    List<CheckinVooDto> findByCheckin(Date dataInicial, Date dataFinal);
 }

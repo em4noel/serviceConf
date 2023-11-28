@@ -16,6 +16,8 @@ public class TurReservasAereas {
     @Id
     @Column(name = "Id")
     private Integer reservaId;
+    @Column(name = "Status")
+    private Integer status;
     @Column(name = "Trecho")
     private String trecho;
     @Column(name = "Companhia")
