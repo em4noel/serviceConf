@@ -1,5 +1,6 @@
 package com.serviceConf.confiancaManger.Trecho;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.serviceConf.confiancaManger.Checkin.Checkin;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,7 @@ public class TrechoCheckin {
     @Column(name = "status")
     private int status;
     @Column(name = "data_embarque")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date data;
     @Column(name = "reemissao")
     private int reemissao;

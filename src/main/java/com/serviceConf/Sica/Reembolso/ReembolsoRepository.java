@@ -17,7 +17,7 @@ public interface ReembolsoRepository extends JpaRepository<Reembolso, Integer> {
 
     Reembolso findByNumtktAndTipodocAndDataped(String tipodoc, String numTkt, Date dataped);
 
-    Reembolso findByLocAndTipodoc(String loc, String tipodoc);
+    Reembolso findByLocAndTipodocAndPax(String loc, String tipodoc, String pax);
 
     List<Reembolso> findByDataemiBetweenAndCodemp(Date to, Date from, Integer codemp);
 

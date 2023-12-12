@@ -32,10 +32,10 @@ public interface TurVendasAereasRepository extends JpaRepository<TurVendasAereas
 
     @Transactional
     @Query(" SELECT NEW com.serviceConf.wooba.turVendasAereas.dto.FindByLocalizadorDto " +
-            " ( v.localizador, v.numeroDoBilhete) " +
+            " ( v.localizador, v.numeroDoBilhete, v.passageiro) " +
             " FROM TurVendasAereas v " +
-            " WHERE v.numeroDoBilhete =:numero ")
-    Optional<FindByLocalizadorDto> findByLocalizadorNulo(@PathVariable String numero);
+            " WHERE v.numeroDoBilhete =:numero AND v.passageiro=:pax")
+    Optional<FindByLocalizadorDto> findByLocalizadorNulo(@PathVariable String numero, @PathVariable String pax);
 
 
 }

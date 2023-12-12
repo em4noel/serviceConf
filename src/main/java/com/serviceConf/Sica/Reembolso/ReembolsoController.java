@@ -9,6 +9,7 @@ import com.serviceConf.security.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,22 +26,26 @@ public class ReembolsoController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private JwtService jwtService;
+
     @PostMapping("/FindAll")
-    public Optional<Reembolso> findAll(@RequestBody Reembolso reembolsoSica){
+    public ResponseEntity<?> findAll(@RequestBody Reembolso reembolsoSica) {
         return reembolsoService.findAll(reembolsoSica);
     }
+
     @PostMapping("/FindByAzul")
-    public Reembolso findByAzul(@RequestBody Reembolso reembolsoSica){
-        return  reembolsoService.findByAzul(reembolsoSica);
+    public ResponseEntity<?> findByAzul(@RequestBody Reembolso reembolsoSica) {
+        return reembolsoService.findByAzul(reembolsoSica);
     }
+
     @PostMapping("/FindByLoc")
-    public Reembolso findByLoc(@RequestBody Reembolso reembolsoSica){
-        return  reembolsoService.findByLoc(reembolsoSica);
+    public Reembolso findByLoc(@RequestBody Reembolso reembolsoSica) {
+        return reembolsoService.findByLoc(reembolsoSica);
     }
+
     @PostMapping("/FindBySica")
     public List<ReembolsoDTO> findAllSica(@RequestBody PostReembolsoSicaModel postReembolsoSicaModel) {
-       // System.out.println(postReembolsoSicaModel.getDataI().getTime());
-       return reembolsoService.consultaSica(postReembolsoSicaModel);
+        // System.out.println(postReembolsoSicaModel.getDataI().getTime());
+        return reembolsoService.consultaSica(postReembolsoSicaModel);
     }
 
 }

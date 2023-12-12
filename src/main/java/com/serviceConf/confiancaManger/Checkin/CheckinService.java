@@ -66,7 +66,7 @@ public class CheckinService {
         for (Checkin checkin : checkinList) {
             String numero = checkin.getNumeroDoBilhete().substring(3);
             System.out.println(numero);
-            Optional<FindByLocalizadorDto> isLocalizador = turVendasAereasRepository.findByLocalizadorNulo(numero);
+            Optional<FindByLocalizadorDto> isLocalizador = turVendasAereasRepository.findByLocalizadorNulo(numero, checkin.getPassageiro());
             if (isLocalizador != null) {
                 checkin.setLocalizadorCompanhia(isLocalizador.get().getLocalizador());
             }

@@ -1,5 +1,6 @@
 package com.serviceConf.confiancaManger.Checkin;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,6 +34,7 @@ public class Checkin {
     @Column(name = "localizador_companhia")
     private String localizadorCompanhia;
     @Column(name = "data")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date data;
     @Column(name = "companhia")
     private String companhia;

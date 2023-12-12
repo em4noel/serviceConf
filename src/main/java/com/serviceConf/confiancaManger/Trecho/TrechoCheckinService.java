@@ -91,6 +91,7 @@ public class TrechoCheckinService {
     private void atualizarOrigemAndDestino(List<TrechoCheckin> trechos) {
         for (TrechoCheckin trecho : trechos) {
             if (trecho.getDsOrigem() != null) {
+                System.out.println(trecho.getDe());
                 Optional<AeroportoWooba> origem = getAeroportoWooba(trecho.getDe());
                 if (origem != null) {
 
