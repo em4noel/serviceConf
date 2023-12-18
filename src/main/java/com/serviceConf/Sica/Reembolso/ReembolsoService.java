@@ -22,12 +22,11 @@ public class ReembolsoService {
     private ReembolsoRepository reembolsoRepository;
 
     public ResponseEntity<?> findAll(Reembolso filter) {
-        //Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
         List<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
         if (reembolsoSica.size() > 0) {
             return ResponseEntity.ok(reembolsoSica);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseMessage("Bilhete não encontrado."));
     }
 
     public ResponseEntity<?> findByAzul(Reembolso filter) {
@@ -38,12 +37,13 @@ public class ReembolsoService {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    public ResponseEntity<?>  findByLoc(Reembolso filter) {
-        List<Reembolso> reembolsoSica = reembolsoRepository.findByLocAndTipodocAndPax(filter.getLoc(), filter.getTipodoc(),filter.getPax());
-        if (reembolsoSica != null ) {
+    public ResponseEntity<?> findByLoc(Reembolso filter) {
+        List<Reembolso> reembolsoSica = reembolsoRepository.findByLocAndTipodocAndPax(filter.getLoc(), filter.getTipodoc(), filter.getPax());
+        if (reembolsoSica.size() > 0) {
             return ResponseEntity.ok().body(reembolsoSica);
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseMessage("Localizador não encontrado."));
+
     }
 
     public List<ReembolsoDTO> consultaSica(PostReembolsoSicaModel postReembolsoSicaModel) {

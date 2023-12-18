@@ -39,7 +39,6 @@ public class ReembolsoController {
 
     @PostMapping("/FindByLoc")
     public ResponseEntity<?>  findByLoc(@RequestBody Reembolso reembolsoSica) {
-        System.out.println(reembolsoSica);
         return reembolsoService.findByLoc(reembolsoSica);
     }
 
