@@ -23,9 +23,9 @@ public class ReembolsoService {
 
     public ResponseEntity<?> findAll(Reembolso filter) {
         //Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia(), filter.getDataped());
-        Optional<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
-        if (reembolsoSica.isPresent()) {
-            return ResponseEntity.ok(reembolsoSica.get());
+        List<Reembolso> reembolsoSica = reembolsoRepository.findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(filter.getTipodoc(), filter.getNumtkt(), filter.getCodcia());
+        if (reembolsoSica.size() > 0) {
+            return ResponseEntity.ok(reembolsoSica);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
@@ -38,10 +38,10 @@ public class ReembolsoService {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    public Reembolso findByLoc(Reembolso filter) {
-        Reembolso reembolsoSica = reembolsoRepository.findByLocAndTipodocAndPax(filter.getLoc(), filter.getTipodoc(),filter.getPax());
-        if (reembolsoSica != null && reembolsoSica.getNumvend() != null) {
-            return reembolsoSica;
+    public ResponseEntity<?>  findByLoc(Reembolso filter) {
+        List<Reembolso> reembolsoSica = reembolsoRepository.findByLocAndTipodocAndPax(filter.getLoc(), filter.getTipodoc(),filter.getPax());
+        if (reembolsoSica != null ) {
+            return ResponseEntity.ok().body(reembolsoSica);
         }
         return null;
     }

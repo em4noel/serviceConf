@@ -13,11 +13,11 @@ import java.util.Optional;
 @Repository
 public interface ReembolsoRepository extends JpaRepository<Reembolso, Integer> {
     Optional<Reembolso> findFirstByTipodocAndNumtktAndCodciaAndDatapedOrderByNumreembDesc(String tipodoc, String numTkt, String codCia, Date dataped);
-    Optional<Reembolso> findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(String tipodoc, String numTkt, String codCia);
+    List<Reembolso> findFirstByTipodocAndNumtktAndCodciaOrderByNumreembDesc(String tipodoc, String numTkt, String codCia);
 
     Reembolso findByNumtktAndTipodocAndDataped(String tipodoc, String numTkt, Date dataped);
 
-    Reembolso findByLocAndTipodocAndPax(String loc, String tipodoc, String pax);
+    List<Reembolso> findByLocAndTipodocAndPax(String loc, String tipodoc, String pax);
 
     List<Reembolso> findByDataemiBetweenAndCodemp(Date to, Date from, Integer codemp);
 
